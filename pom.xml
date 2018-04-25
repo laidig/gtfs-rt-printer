@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.transitdata</groupId>
-    <artifactId>file-gtfs-rt-example</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>gtfs-rt-printer</artifactId>
+    <version>0.0.3</version>
 
     <build>
         <plugins>
@@ -14,8 +14,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -45,7 +45,14 @@
         <dependency>
             <groupId>org.onebusaway</groupId>
             <artifactId>onebusaway-gtfs-realtime-api</artifactId>
-            <version>1.1.1</version>
+            <version>1.2.10-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>public.onebusaway.org</id>
+            <url>http://nexus.onebusaway.org/content/groups/public/</url>
+        </repository>
+    </repositories>
 </project>

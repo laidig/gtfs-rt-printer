@@ -40,7 +40,7 @@ public class Main {
         GtfsRealtime.FeedMessage feedMessage =null;
         // Parse file into an object in memory
         try {
-            feedMessage = GtfsRealtime.FeedMessage.parseFrom(stream);
+            feedMessage = GtfsRealtime.FeedMessage.parseFrom(stream, registry);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,8 +50,11 @@ public class Main {
             System.out.println("feed contains " + countOfMessages + " messages");
 
 
-            for (Object e : feedMessage.getEntityList()) {
-                System.out.println(e); }
+            for (GtfsRealtime.FeedEntity e : feedMessage.getEntityList()) {
+                if (e.hasTripUpdate()) System.out.println(e.getTripUpdate());
+                if (e.hasAlert()) System.out.println(e.getAlert());
+                if (e.hasVehicle()) System.out.println(e.getVehicle());
+            }
     }
 }
 }

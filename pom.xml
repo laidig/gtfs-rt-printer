@@ -6,7 +6,7 @@
 
     <groupId>net.transitdata</groupId>
     <artifactId>gtfs-rt-printer</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 
     <build>
         <plugins>

@@ -1,6 +1,8 @@
+import com.beust.jcommander.JCommander;
 import com.google.transit.realtime.*;
 import com.google.protobuf.ExtensionRegistry;
 
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.File;
@@ -8,19 +10,51 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+//headers....
+import com.beust.jcommander.*;
+
 public class Main {
     private static URL url;
+    private static String fileOrUrl;
     public static void main(String[] args){
+        CommandArgs commandArgs = new CommandArgs();
+        JCommander.newBuilder()
+                .addObject(commandArgs)
+                .build()
+                .parse(args);
+
+        try {
+            System.out.println(commandArgs);
+            fileOrUrl = commandArgs.getFileOrURL();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ExtensionRegistry registry = ExtensionRegistry.newInstance();
         GtfsRealtimeExtensions.registerExtensions(registry);
 
         // Load the file
         InputStream stream = null;
-        System.out.println("loading " + args[0]);
+        System.out.println("loading " + fileOrUrl);
 
-        if (args[0].startsWith("http")) try {
-            url = new URL(args[0]);
-            stream = url.openStream();
+        if (fileOrUrl.startsWith("http")) try {
+            url = new URL(fileOrUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            if (commandArgs.getHeaders().size() > 0){
+                for (String h : commandArgs.getHeaders()) {
+                    String[] keyval = h.split(":");
+                    if (keyval.length > 2 || keyval.length == 0) {
+                        throw new IllegalArgumentException("headers must only have a key and value");
+                    }
+
+                    conn.setRequestProperty(keyval[0], keyval[1]);
+                }
+            }
+
+            stream = conn.getInputStream();
+
         } catch (MalformedURLException e) {
             System.out.println("problem with URL " + args[0]);
         } catch (IOException e) {

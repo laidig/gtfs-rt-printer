@@ -3,11 +3,11 @@
 Example code that loads a GTFS-RT from a file or URL and prints the results. It includes a set of extensions, such as for NYCT. 
 
 # Download
-    [JAR file](https://github.com/laidig/gtfs-rt-printer/releases/latest)
+[JAR file](https://github.com/laidig/gtfs-rt-printer/releases/latest)
 
 # Requirements
-    * Java 8 
-    * for Java 7 see older [release](https://github.com/laidig/gtfs-rt-printer/releases/download/0.0.4/gtfs-rt-printer-0.0.4.jar)
+* Java 8 
+* for Java 7 see older [release](https://github.com/laidig/gtfs-rt-printer/releases/download/0.0.4/gtfs-rt-printer-0.0.4.jar)
 
 # Usage
 

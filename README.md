@@ -1,4 +1,4 @@
-# file-gtfs-rt-example
+# gtfs-rt-printer
 
 Example code that loads a GTFS-RT from a file or URL and prints the results. It includes a set of extensions, such as for NYCT. 
 

@@ -4,7 +4,8 @@ Example code that loads a GTFS-RT from a file or URL and prints the results. It 
 
 # Usage
 
-     $ java -jar gtfs-rt-printer-0.0.4.jar http://localhost:8001/tripUpdates
+## Loading from a URL
+     $ java -jar gtfs-rt-printer-1.0.0.jar http://localhost:8001/tripUpdates
      
      loading http://localhost:8001/tripUpdates
      feed contains 459 messages
@@ -31,3 +32,29 @@ Example code that loads a GTFS-RT from a file or URL and prints the results. It 
        }
      }
      ...
+
+## Sending HTTP GET Headers
+    $ java -jar gtfs-rt-printer-1.0.0.jar -header 'Accept: application/x-google-protobuf' -header 'Authorization: apikey ' https://api.transport.nsw.gov.au/v1/gtfs/realtime/sydneytrains | head
+    loading https://api.transport.nsw.gov.au/v1/gtfs/realtime/sydneytrains
+    Setting header Accept:  application/x-google-protobuf
+    Setting header Authorization:  apikey 
+    feed contains 299 entities
+    trip {
+      trip_id: "85-Z.1283.125.128.A.8.51118258"
+      schedule_relationship: SCHEDULED
+      route_id: "CMB_2c"
+    }
+    timestamp: 1525537117
+    
+## Loading from a file
+    $ java -jar gtfs-rt-printer-1.1.0.jar ../src/test/resources/bart.pb| head
+      loading ../src/test/resources/bart.pb
+      feed contains 42 entities
+      trip {
+        trip_id: "1010958SAT"
+      }
+      stop_time_update {
+        stop_sequence: 17
+        departure {
+          delay: 120
+          uncertainty: 30

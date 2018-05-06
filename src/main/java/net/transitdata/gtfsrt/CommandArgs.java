@@ -1,4 +1,4 @@
-//class for handling command line arguments
+package net.transitdata.gtfsrt;//class for handling command line arguments
 import com.beust.jcommander.Parameter;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class CommandArgs {
     //debug only
     @Override
     public String toString() {
-        return "CommandArgs{" +
+        return "net.transitdata.gtfsrt.CommandArgs{" +
                 "fileOrURL='" + fileOrURL + '\'' +
                 ", headers=" + headers +
                 '}';

@@ -39,6 +39,20 @@ Utility that loads a GTFS-RT from a file or URL and prints the results. It inclu
        }
      }
      ...
+    
+## Loading from a file
+    $ java -jar gtfs-rt-printer-1.1.0.jar ../src/test/resources/bart.pb| head
+      loading ../src/test/resources/bart.pb
+      feed contains 42 entities
+      trip {
+        trip_id: "1010958SAT"
+      }
+      stop_time_update {
+        stop_sequence: 17
+        departure {
+          delay: 120
+          uncertainty: 30
+          
 
 ## Sending HTTP GET Headers
     $ java -jar gtfs-rt-printer-1.0.0.jar -header 'Accept: application/x-google-protobuf' -header 'Authorization: apikey ' https://api.transport.nsw.gov.au/v1/gtfs/realtime/sydneytrains | head
@@ -53,15 +67,7 @@ Utility that loads a GTFS-RT from a file or URL and prints the results. It inclu
     }
     timestamp: 1525537117
     
-## Loading from a file
-    $ java -jar gtfs-rt-printer-1.1.0.jar ../src/test/resources/bart.pb| head
-      loading ../src/test/resources/bart.pb
-      feed contains 42 entities
-      trip {
-        trip_id: "1010958SAT"
-      }
-      stop_time_update {
-        stop_sequence: 17
-        departure {
-          delay: 120
-          uncertainty: 30
+## Setting HTTP Username and Password
+    $ java -jar gtfs-rt-printer-1.1.0.jar -user username -password password http://www.rtd-denver.com/google_sync/TripUpdate.pb
+    
+Note that reserved characters (e.g. *, ! and & ) need to be escaped (e.g. \\*, \\!, and \\&)

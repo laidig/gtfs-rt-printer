@@ -11,6 +11,16 @@ public class CommandArgs {
     @Parameter(names= "-header", description= "Additional HTTP Request header, in format key:value. Can be repeated")
     private List<String> headers = new ArrayList<>();
 
+    @Parameter(names="-user", description = "HTTP Authentication Username")
+    private String user;
+
+    @Parameter(names="-password", description = "HTTP Authentication Password")
+    private String password;
+
+    public String getUser() { return user; }
+
+    public String getPassword() { return password; }
+
     public String getFileOrURL() {
         return fileOrURL;
     }
@@ -19,12 +29,17 @@ public class CommandArgs {
         return headers;
     }
 
-    //debug only
+    public void addHeader(String header) {
+        headers.add(header);
+    }
+
     @Override
     public String toString() {
-        return "net.transitdata.gtfsrt.CommandArgs{" +
+        return "CommandArgs{" +
                 "fileOrURL='" + fileOrURL + '\'' +
                 ", headers=" + headers +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

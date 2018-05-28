@@ -5,6 +5,8 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class StreamUtils {
     public static InputStream getFileInputStream(String file) {
@@ -21,6 +23,11 @@ public class StreamUtils {
         try {
             URL url = new URL(arg);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            if (commandArgs.getUser() != null && commandArgs.getPassword() != null) {
+                String authheader = calculateAuthHeader(commandArgs);
+                commandArgs.addHeader(authheader);
+            }
 
             if (commandArgs.getHeaders().size() > 0){
                 for (String h : commandArgs.getHeaders()) {
@@ -47,5 +54,15 @@ public class StreamUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static String calculateAuthHeader(CommandArgs commandArgs){
+        String username = commandArgs.getUser();
+        String password = commandArgs.getPassword();
+
+        // credit to https://stackoverflow.com/questions/12732422/adding-header-for-httpurlconnection
+        String basicAuth = Base64.getEncoder().encodeToString((username+":"+password).getBytes(StandardCharsets.UTF_8));
+        basicAuth = "Authorization: Basic " +basicAuth;
+        return basicAuth;
     }
 }

@@ -1,6 +1,6 @@
 # gtfs-rt-printer
 
-Utility that loads a GTFS-RT from a file or URL and prints the results. It includes extension support, such as for NYCT. 
+Utility that loads a GTFS-RT from a file or URL and prints the results. It includes extension support, such as for NYCT, and support for several methods of authentication. 
 
 # Download
 [JAR file](https://github.com/laidig/gtfs-rt-printer/releases/latest)

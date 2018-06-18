@@ -69,5 +69,6 @@ Utility that loads a GTFS-RT from a file or URL and prints the results. It inclu
     
 ## Setting HTTP Username and Password
     $ java -jar gtfs-rt-printer-1.1.0.jar -user username -password password http://www.rtd-denver.com/google_sync/TripUpdate.pb
+    $ java -jar gtfs-rt-printer-1.2.0.jar -user accessKey -password secretKey https://gtfsapi.metrarail.com/gtfs/raw/tripUpdates.dat
     
 Note that reserved characters (e.g. *, ! and & ) need to be escaped (e.g. \\*, \\!, and \\&)
